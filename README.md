@@ -17,7 +17,7 @@
 
 ![](https://www.interviewcake.com/images/svgs/cs_for_hackers__ram_empty_with_indices.svg?bust=150)
 
-我们把这些数字叫做 **址(address)** 。
+我们把这些数字叫做 **地址(address)** 。
 
 每个格子装有8**比特(bits)**。每一个比特就是一个小的电子开关。“开”和“关”分别代表1和0。
 
@@ -36,8 +36,9 @@
 
 这就是我们为什么要叫它Random Access Memory(RAM)————我们可以立即访问到任意一个地址的比特。
 
-硬盘（hard drives）没有随机访问这个功能。因为没有和每个byte直接相连的东西。但是，有一个reader——叫做 **head** ——这个可以在disk的表面移动（就像
+> 硬盘（hard drives）没有随机访问这个功能。因为没有和每个byte直接相连的东西。但是，有一个reader——叫做 **head** ——这个可以在disk的表面移动（就像
 电唱机上面的那个针）。读取字节的时候花的时间会更长一些因为你得等到那个head移动到disc上面的那个位置。
+
 
 即使内存控制器可以在任意远的内存地址之间跳跃，程序更倾向访问靠近的内存。 **所以如果读内存的地址彼此靠近的话，电脑运行的速度回更快一些** 。下面是它如何工作的：
 
@@ -45,7 +46,8 @@
 
 ![](https://www.interviewcake.com/images/svgs/cs_for_hackers__ram_cache.svg?bust=150)
 
-实际上，它有很多的缓存。但是我们可以把他们想象成一个缓存。
+> 实际上，它有很多的缓存。但是我们可以把他们想象成一个缓存。
+
 
 从cache中读取数据要比从RAM中读取快得多，所以如果从cache中读取数据的话，处理器可以节省很多时间。
 

@@ -58,3 +58,20 @@
 但是如果处理器也需要读地址951的数据，地址362，然后地址419....这个时候cache就不会有帮助了，它会从RAM中一次一次的读取。
 
 所以读取连续的内存地址比跳跃的内存地址会更快一些。
+
+
+## Binary numbers
+.....
+
+到目前为止，我们已经讲过 **无符号数（unsigned integers）** 了。(“无符号”指的是非负，"integer"指的是整数，不是分数或小数)。存储其他的数字并不困难。下面是一些数字是怎么存储的。
+
+ **分数(Fractions):**  存储两个数字：分子和分母。
+
+ **小数（Decimals):** 依然是存储两个数字： 1) the number with the decimal point taken out, and 2) the position where the decimal point goes (how many digits over from the leftmost digit).带有小数点的数字和小数点所在的位置（小数点左边有几位数）。
+ 
+ **负数（Negative Numbers）:** 保留最左边的那一位来表示符号，0代表正1代表负。
+
+在现实生活中，我们可能会做的有点不一样。但是这些方法是可行的，它们可以使用0和1来表示很复杂的数字。
+
+> 我们已经讲了10进制和2进制...你可能也已经见过16进制，也叫hexadecimal 或者hex. 在16进制中，使用的数字有 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, a, b, c, d, e, and f.16进制数一般都用"0x"或者"#"作为前缀。
+在CSS中，颜色值有时候也使用16进制数来表示。Interview Cake’s签名的蓝色的颜色值是"#5bc0de"。

@@ -114,3 +114,65 @@
 
 所以有一个权衡。正如我们看到的，这是数据结构的一种趋势，为了得到一些好的特性，我们往往会失去一些东西。
 
+## Arrays
+
+我们已经知道如何存储数字，现在我们来讲一下如何存储一系列数字。
+
+假如我们想存储每天喝的康普茶的数量。
+
+我们使用8-bit来存储每天的康普茶数量，unsighed integer.如果这样的话，我们一天喝茶的数量超过256的时候，我们就不能存储了。
+
+我们可以把康普茶的数量存储到相邻的RAM中，从地址0开始：
+
+![https://www.interviewcake.com/images/svgs/cs_for_hackers__array_kombucha_counts.svg?bust=151]
+
+这个就是 **array** .RAM本身就是一个array。
+
+就像RAM一样，array中的元素都是被编号的。我们叫这个编号为array的index。在这个例子中，每个array的元素的index和它在RAM中的地址一样的。
+
+但是这通常是不对的。假设另一个程序已经在address2存储了东西：
+
+![](https://www.interviewcake.com/images/svgs/cs_for_hackers__array5_occupied.svg?bust=151)
+
+那么我们的array就会从下面的地址3开始,index0就会在内存地址的address3中，index1就会在内存地址的address4中:
+
+![](https://www.interviewcake.com/images/svgs/cs_for_hackers__array5.svg?bust=151)
+
+假设我们想要得到在array中index4的位置的康普茶的数量，我们怎么计算我们该到哪个内存地址中查找呢:
+
+假定array是从地址3开始的，我们想要index4中的数字，3+4=7，那么地址7中存储的就是我们想要找的数字。通常来讲，为了得到array的第n个item,有下面的公式：
+
+> address of nth item in array=address of array start+n
+
+因为每个RAM的地址的大小和每个康普茶的数量的大小都是1byte。所以在内存中正好可以一一对应起来。
+
+但是通常不是这种情况。实际上，我们通常使用64-bit的integers.
+
+所以我们怎么建立使用64-bit的integer的array呢？它在8-bit的memory slot中是怎么对应的呢？
+
+如果是这种情况，那么我们就分配8个memory slot给一个index，而不是1个memory slot：
+
+![](https://www.interviewcake.com/images/svgs/cs_for_hackers__array64_long.svg?bust=151)
+
+所以为了得到array中的第n个item，有下面的公式：
+
+> address of nth item in array=address of array start+(n∗size of each item in bytes)
+
+不用担心，虽然有乘法运算，但是这并不会导致速度变慢。记住：对于fixed-width integer的加法，减法，乘法，除法都是使用O(1)的时间，所以我们上面计算地址的计算也是使用O(1)的时间。
+
+还记得我们之前讲的吗？memory controller和RAM的slot之间有直接的映射关系。这意味着我们无论读哪个地址中的东西，都只使用O(1)的时间。
+
+![](https://www.interviewcake.com/images/svgs/cs_for_hackers__arrays_no_processor_ram_memory_controller.svg?bust=151)
+
+ **这意味着查找array中index位置的元素的时间复杂度是O(1)的。** array的快速查找能力也是它的重要特性之一。
+ 
+ 但是上面的公式只适用于下面的情况：
+ 1.  **array中的每个item都有相同的大小（占用的byte数是一样的）**。
+ 2.  **array在内存中是连续存储的**。 
+ 
+ 上面两个条件保证我们的公式是正确的。这也导致array是可预测的。我们可以清楚的预测出array中的第n个item在内存的什么位置。
+ 
+ 但是对于我们存在array中的元素也有了限制。array中的每个item都要有相同的大小。如果array要存储很多东西，我们需要在内存中有大量连续的空闲内存。这可能很难因为RAM的某些地址已经被其他程序占用了。
+ 
+ 这就是权衡。array有很快的查找时间（O(1)）,但是array中每个item都要有相同的大小，而且你需要很多连续的空闲内存来存储array。
+ 
